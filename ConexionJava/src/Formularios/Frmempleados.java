@@ -63,7 +63,12 @@ public class Frmempleados extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/add-new-document.png"))); // NOI18N
+        Nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Sin título.png"))); // NOI18N
+        Nuevo.setToolTipText("");
+        Nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Nuevo.setFocusCycleRoot(true);
+        Nuevo.setFocusTraversalPolicy(null);
+        Nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Nuevo.setName(""); // NOI18N
         Nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +77,7 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
+        Grabar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/save-file-option.png"))); // NOI18N
         Grabar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GrabarActionPerformed(evt);
