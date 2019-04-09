@@ -23,6 +23,7 @@ public String newUsers (int Documento,String Nombres, String Login, String Passw
         con.createStatement().execute(sql);
     }catch (SQLException err){
         JOptionPane.showMessageDialog(null,err.getMessage(), "Error", 0);
+        return "";
     }
     return "Registro Exitoso";
 }

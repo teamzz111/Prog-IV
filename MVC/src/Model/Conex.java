@@ -14,7 +14,7 @@ public class Conex {
     public Connection getConection()
     {
     Connection link = null;
-    String url = "jdbc:mysql://localhost/progm";
+    String url = "jdbc:mysql://localhost/prog";
     try{
     Class.forName("com.mysql.jdbc.Driver");
     link = DriverManager.getConnection(url,"root","");
