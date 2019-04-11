@@ -1,4 +1,3 @@
-
 package Formularios;
 
 import java.sql.Connection;
@@ -7,18 +6,21 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Frmempleados extends javax.swing.JFrame {
+
     Connection con = null;
-    String Consulta="";
-    Clases.Conex link= new Clases.Conex();
-    ResultSet rs=null;
-    Boolean nuereg=false;
-    Boolean editar= false;
-    Boolean buscar= false; 
-    
+    String Consulta = "";
+    Clases.Conex link = new Clases.Conex();
+    ResultSet rs = null;
+    Boolean nuereg = false;
+    Boolean editar = false;
+    Boolean buscar = false;
+
     public Frmempleados() {
         initComponents();
         setLocationRelativeTo(null);
+            Conectarse();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -56,10 +58,12 @@ public class Frmempleados extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         Cerrar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FORM");
         setBackground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -85,6 +89,7 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Grabar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 50, 50));
 
+        Editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Editar.png"))); // NOI18N
         Editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditarActionPerformed(evt);
@@ -92,6 +97,8 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 50, 50));
 
+        Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Actualizar.jpg"))); // NOI18N
+        Actualizar.setInheritsPopupMenu(true);
         Actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ActualizarActionPerformed(evt);
@@ -99,6 +106,7 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 50, 50));
 
+        Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Cancelar.png"))); // NOI18N
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelarActionPerformed(evt);
@@ -106,6 +114,8 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 50, 50));
 
+        Eliminar.setBackground(new java.awt.Color(255, 255, 255));
+        Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Borrar.png"))); // NOI18N
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EliminarActionPerformed(evt);
@@ -113,6 +123,7 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 50, 50));
 
+        Primero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Primero.jpg"))); // NOI18N
         Primero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrimeroActionPerformed(evt);
@@ -120,6 +131,7 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Primero, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 50, 50));
 
+        Anterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Anterior.jpg"))); // NOI18N
         Anterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AnteriorActionPerformed(evt);
@@ -127,6 +139,7 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Anterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 50, 50));
 
+        Siguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/siguiente.jpg"))); // NOI18N
         Siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SiguienteActionPerformed(evt);
@@ -134,6 +147,7 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 50, 50));
 
+        Ultimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Último.jpg"))); // NOI18N
         Ultimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UltimoActionPerformed(evt);
@@ -141,6 +155,7 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Ultimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 50, 50));
 
+        Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Buscar.jpg"))); // NOI18N
         Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarActionPerformed(evt);
@@ -148,72 +163,78 @@ public class Frmempleados extends javax.swing.JFrame {
         });
         getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 50, 50));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Número Documento: ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
-        jPanel1.add(Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, 190, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        jPanel1.add(Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 190, -1));
 
         jLabel2.setText("Nombres");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 57, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         Documento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DocumentoActionPerformed(evt);
             }
         });
-        jPanel1.add(Documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, 190, -1));
-        jPanel1.add(Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 123, 190, -1));
+        jPanel1.add(Documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 190, -1));
+        jPanel1.add(Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 190, -1));
 
         jLabel3.setText("Apellidos");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 103, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         jLabel4.setText("Celular");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 149, -1, -1));
-        jPanel1.add(Celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 169, 190, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+        jPanel1.add(Celular, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 190, -1));
 
         jLabel5.setText("Correo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
-        jPanel1.add(Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 190, -1));
-        jPanel1.add(Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 190, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+        jPanel1.add(Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 190, -1));
+        jPanel1.add(Direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 190, -1));
 
         jLabel6.setText("Dirección");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
 
         jLabel7.setText("Dependencia");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         Dependencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Dependencia.setName("Dependencia"); // NOI18N
-        jPanel1.add(Dependencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 190, -1));
+        jPanel1.add(Dependencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 190, -1));
         Dependencia.getAccessibleContext().setAccessibleName("Dependencia");
 
         jLabel8.setText("Estado");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
-        jPanel1.add(Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 30, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
+        jPanel1.add(Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 30, -1));
 
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 130, 130));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 130, 130));
 
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 130, 130));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 130, 130));
 
         jButton12.setText("Tomar foto");
-        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 90, -1));
+        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 90, -1));
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Huella");
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 130, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 130, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 710, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 750, 390));
 
+        Cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img_168243.png"))); // NOI18N
         Cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CerrarActionPerformed(evt);
             }
         });
         getContentPane().add(Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 50, 50));
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/xc.jpg"))); // NOI18N
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -90, 750, 450));
     }// </editor-fold>//GEN-END:initComponents
 
     private void DocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentoActionPerformed
@@ -221,49 +242,51 @@ public class Frmempleados extends javax.swing.JFrame {
     }//GEN-LAST:event_DocumentoActionPerformed
 
     private void NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoActionPerformed
-        nuereg = true; 
-        Documento.setText(""); 
-        Nombres.setText(""); 
-        Apellidos.setText(""); 
-        Celular.setText(""); 
-        Correo.setText(""); 
-        Direccion.setText(""); 
+        nuereg = true;
+        Documento.setText("");
+        Nombres.setText("");
+        Apellidos.setText("");
+        Celular.setText("");
+        Correo.setText("");
+        Direccion.setText("");
         Dependencia.setSelectedItem("--Seleccione--");
-        Estado.setSelected(true); 
-        Documento.requestFocus(); 
-        controles(false, true, false, false, true, false, false, false, false, false, false, false); 
+        Estado.setSelected(true);
+        Documento.requestFocus();
+        controles(false, true, false, false, true, false, false, false, false, false, false, false);
     }//GEN-LAST:event_NuevoActionPerformed
 
     private void GrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GrabarActionPerformed
-        con = link.Conectarse(); 
-        String doc = Documento.getText(); 
-        String nom = Nombres.getText(); 
-        String ape = Apellidos.getText(); 
-        String cel = Celular.getText(); 
-        String cor = Correo.getText(); 
-        String dir = Direccion.getText(); 
-        String dep = Dependencia.getSelectedItem().toString(); 
-        int est; 
-        if (Estado.isSelected()){ est= 1; }
-        else { est= 0; } 
-        Consulta="";
+        con = link.Conectarse();
+        String doc = Documento.getText();
+        String nom = Nombres.getText();
+        String ape = Apellidos.getText();
+        String cel = Celular.getText();
+        String cor = Correo.getText();
+        String dir = Direccion.getText();
+        String dep = Dependencia.getSelectedItem().toString();
+        int est;
+        if (Estado.isSelected()) {
+            est = 1;
+        } else {
+            est = 0;
+        }
+        Consulta = "INSERT INTO TbEmpleados VALUES('" + doc + "','" + nom + "','" + ape + "','" + cel
+                + "','" + cor + "','" + dir + "','" + dep + "','" + est + "');";
         try {
             con.createStatement().execute(Consulta);
             Conectarse();
-            JOptionPane.showMessageDialog(null, "Registro ingresado","Sistema",0); 
-        } 
-        catch(SQLException err)
-        { 
-            JOptionPane.showMessageDialog(null, err.getMessage(),"Sistema",0);
-        } 
-        controles(true, false, true, false, false, true, true, true, true, true, true, true); 
+            JOptionPane.showMessageDialog(null, "Registro ingresado", "Sistema", 0);
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage(), "Sistema", 0);
+        }
+        controles(true, false, true, false, false, true, true, true, true, true, true, true);
     }//GEN-LAST:event_GrabarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-    
+
         Documento.setEnabled(false);
-        controles (false,false,false,true,true,false, false,false,false, false, false, false); 
-        editar = true; 
+        controles(false, false, false, true, true, false, false, false, false, false, false, false);
+        editar = true;
 
     }//GEN-LAST:event_EditarActionPerformed
 
@@ -276,220 +299,193 @@ public class Frmempleados extends javax.swing.JFrame {
         String cor = Correo.getText();
         String dir = Direccion.getText();
         String dep = Dependencia.getSelectedItem().toString();
-        Consulta = "UPDATE tbempleados SET Nombres='" + nom + "'," + "Apellidos='" + ape + "'," 
-                + "Celular=1" + cel + "Correa= " + cor + ", Direccion='" + dir 
-                + "', Dependencia='" + dep + "' WHERE Documento="+ doc + ";"; 
+        Consulta = "UPDATE TbEmpleados SET Nombres='" + nom + "'," + "Apellidos='" + ape + "',"
+                + "Celular='" + cel + "',Correo= '" + cor + "', Direccion='" + dir
+                + "', Dependencia='" + dep + "' WHERE Documento=" + doc + ";";
         try {
             con.createStatement().execute(Consulta);
             Conectarse();
-            JOptionPane.showMessageDialog(null, "Registro modificado correctamenH", "Sistema",1);
-            editar = false; 
+            JOptionPane.showMessageDialog(null, "Registro modificado correctamenH", "Sistema", 1);
+            editar = false;
             Documento.setEnabled(true);
-            controles (true,false,true,false,false,true, true,true,true,true,true,true);
+            controles(true, false, true, false, false, true, true, true, true, true, true, true);
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage(), "Sistema", 0);
         }
-            catch(SQLException err)
-                    {
-                    JOptionPane.showMessageDialog(null, err.getMessage() ,"Sistema",0);
-                    }
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
-        String cad=""; 
-        int opc=0; 
-        if (nuereg = true)
-        {
-            cad="Insertando";
-        } 
-        if (editar ==true)
-        { cad="Editando"; 
-        } 
-        if (buscar == true)
-        {
+        String cad = "";
+        int opc = 0;
+        if (nuereg = true) {
+            cad = "Insertando";
+        }
+        if (editar == true) {
+            cad = "Editando";
+        }
+        if (buscar == true) {
             cad = "Buscando";
-        } 
+        }
         opc = JOptionPane.showOptionDialog(null, "Actualmente esta " + cad + " desea cancelar",
                 "Sistema", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-                new Object[] {"Si", "No"}, "Si");
-        if (opc==0){ 
+                new Object[]{"Si", "No"}, "Si");
+        if (opc == 0) {
             formComponentShown(null);
             nuereg = false;
-            editar =false; 
-            buscar=false; 
-            }
+            editar = false;
+            buscar = false;
+        }
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-         int opc=0;
-         opc = JOptionPane.showOptionDialog(null, "Seguro que desea eliminar el registro",
-                 "Sistema", JOptionPane.YES_NO_OPTION,
-                 JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Si", "No"}, "Si");
-                 if (opc==0){
-                    con = link.Conectarse();
-                    Consulta = "DELETE tbempleados WHERE Documento=" + Documento.getText() + ";";
-                    try {
-                        con.createStatement().execute(Consulta);
-                        JOptionPane.showMessageDialog(null, "Registro Eliminado correctament", "Sistema",1);
-                        Documento.setEnabled(true);
-                        formComponentShown(null);
-                    } catch(SQLException err){
-                        JOptionPane.showMessageDialog(null, err.getMessage() ,"Sistema",0);
-                    }
-                 } 
+        int opc = 0;
+        opc = JOptionPane.showOptionDialog(null, "Seguro que desea eliminar el registro",
+                "Sistema", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Si", "No"}, "Si");
+        if (opc == 0) {
+            con = link.Conectarse();
+            Consulta = "DELETE FROM TbEmpleados WHERE Documento=" + Documento.getText() + ";";
+            try {
+                con.createStatement().execute(Consulta);
+                JOptionPane.showMessageDialog(null, "Registro Eliminado correctament", "Sistema", 1);
+                Documento.setEnabled(true);
+                formComponentShown(null);
+            } catch (SQLException err) {
+                JOptionPane.showMessageDialog(null, err.getMessage(), "Sistema", 0);
+            }
+        }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void PrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrimeroActionPerformed
         try {
             rs.first();
             mostrarDatos();
-            controles(true,false,true,false,false,true, true,true,true,true,true,true);
-            }
-        catch (SQLException ex) 
-        { 
-           
-            JOptionPane.showMessageDialog(null, ex.getMessage(),"Sistema",0); 
-        } 
+            controles(true, false, true, false, false, true, true, true, true, true, true, true);
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Sistema", 0);
+        }
     }//GEN-LAST:event_PrimeroActionPerformed
 
     private void AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnteriorActionPerformed
         try {
             rs.previous();
             mostrarDatos();
-            controles(true, false, true, false, false, true, true,true,true,true,true,true); 
+            controles(true, false, true, false, false, true, true, true, true, true, true, true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "SI.H7era", 0);
         }
-        catch (SQLException ex) 
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(),"SI.H7era",0);
-        } 
     }//GEN-LAST:event_AnteriorActionPerformed
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
-        try { 
+        try {
             rs.next();
             mostrarDatos();
-            controles(true,false,true,false,false,true,true, true, true, true, true, true);
+            controles(true, false, true, false, false, true, true, true, true, true, true, true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Sistema", 0);
         }
-        catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage(),"Sistema",0);
-        } 
     }//GEN-LAST:event_SiguienteActionPerformed
 
     private void UltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UltimoActionPerformed
-        try 
-        { 
+        try {
             rs.last();
             mostrarDatos();
-            controles(true, false, true, false, false, true, true, true, true, true, true, true) ;
-        }catch (SQLException ex) 
-        { 
-            JOptionPane.showMessageDialog(null, ex.getMessage(),"Sistema",0);
-        } 
+            controles(true, false, true, false, false, true, true, true, true, true, true, true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Sistema", 0);
+        }
     }//GEN-LAST:event_UltimoActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         con = link.Conectarse();
-        int DocEmp=0;
+        int DocEmp = 0;
         DocEmp = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese documento a buscar"));
-        Consulta = "Select * from tbempleados WHERE Documento=" + DocEmp + ";";
+        Consulta = "Select * from TbEmpleados WHERE Documento=" + DocEmp + ";";
         try {
             rs = con.createStatement().executeQuery(Consulta);
-            rs.last(); 
+            rs.last();
             int numreg = rs.getRow();
             if (numreg > 0) {
                 PrimeroActionPerformed(null);
-                controles(true,false,true,false,true,true, true,true,true,true,true,true);
-                buscar = true; 
-                }
-            else 
-            { 
-                JOptionPane.showMessageDialog(null, "No ray coincidencias","Sistema",1);
-                formComponentShown(null); 
+                controles(true, false, true, false, true, true, true, true, true, true, true, true);
+                buscar = true;
+            } else {
+                JOptionPane.showMessageDialog(null, "No ray coincidencias", "Sistema", 1);
+                formComponentShown(null);
             }
-            } 
-            catch(SQLException err)
-                    {
-                    JOptionPane.showMessageDialog(null, err.getMessage(),"Sistema",0);
-                    } 
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage(), "Sistema", 0);
+        }
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
-        
+
     }//GEN-LAST:event_CerrarActionPerformed
 
-    private void controles (Boolean a, Boolean b, Boolean c, Boolean d, 
-            Boolean e, Boolean f, Boolean g, Boolean h, Boolean i, Boolean j, Boolean k, 
-            Boolean l)
-    {
-        Nuevo.setEnabled(a); 
-        Grabar.setEnabled(b); 
-        Editar.setEnabled(c); 
-        Actualizar.setEnabled(d); 
-        Cancelar.setEnabled(e); 
-        Eliminar.setEnabled(f); 
-        Primero.setEnabled(g); 
-        Anterior.setEnabled(h); 
-        Siguiente.setEnabled(i); 
-        Ultimo.setEnabled(j); 
-        Buscar.setEnabled(k); 
-        Cerrar.setEnabled(l); 
+    private void controles(Boolean a, Boolean b, Boolean c, Boolean d,
+            Boolean e, Boolean f, Boolean g, Boolean h, Boolean i, Boolean j, Boolean k,
+            Boolean l) {
+        Nuevo.setEnabled(a);
+        Grabar.setEnabled(b);
+        Editar.setEnabled(c);
+        Actualizar.setEnabled(d);
+        Cancelar.setEnabled(e);
+        Eliminar.setEnabled(f);
+        Primero.setEnabled(g);
+        Anterior.setEnabled(h);
+        Siguiente.setEnabled(i);
+        Ultimo.setEnabled(j);
+        Buscar.setEnabled(k);
+        Cerrar.setEnabled(l);
     }
-    
-    private void mostrarDatos(){
-        try { 
-                Documento.setText(rs.getString(1) );
-                Nombres.setText(rs.getString(3) );
-                Apellidos.setText(rs.getString(4) );
-                Celular.setText(rs.getString(5) );
-                Correo.setText(rs.getString(6) ); 
-                Direccion.setText(rs.getString(7) );
-                Dependencia.setSelectedItem(rs.getString(8));
-                Estado.setSelected( Boolean.parseBoolean(rs.getString(10)) );
-                }
-                catch(SQLException err){
-                    JOptionPane.showMessageDialog(null, err.getMessage(),"SisterTa",0);
-                        } 
-} 
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt)
-    {
+    private void mostrarDatos() {
+        try {
+            Documento.setText(rs.getString(1));
+            Nombres.setText(rs.getString(2));
+            Apellidos.setText(rs.getString(3));
+            Celular.setText(rs.getString(4));
+            Correo.setText(rs.getString(5));
+            Direccion.setText(rs.getString(6));
+            Dependencia.setSelectedItem(rs.getString(7));
+            Estado.setSelected(Boolean.parseBoolean(rs.getString(8)));
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage(), "SisterTa", 0);
+        }
+    }
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {
         llenarDependencias();
         Conectarse();
     }
-    private void llenarDependencias()
-    {
+
+    private void llenarDependencias() {
         Dependencia.addItem("Seleccione");
-        con= link.Conectarse();
-        Consulta= "SELECT * FROM tbdependencias ORDER BY NombreDependencia";
-        try
-        {
-            rs =con.createStatement().executeQuery(Consulta);
-            while (rs.next())
-            {
+        con = link.Conectarse();
+        Consulta = "SELECT * FROM TbDependencias ORDER BY NombreDependencia";
+        try {
+            rs = con.createStatement().executeQuery(Consulta);
+            while (rs.next()) {
                 Dependencia.addItem(rs.getString("NombreDependencia"));
-            }               
-        }
-            catch(SQLException err)
-            {
-                    JOptionPane.showMessageDialog(null, err.getMessage(),"Sistema",0);                    
             }
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage(), "Sistema", 0);
+        }
     }
-    
-    private void Conectarse(){
-        con=link.Conectarse();
-        Consulta= "SELECT * FROM tbempleados";
-        try
-        {
-            rs=con.createStatement().executeQuery(Consulta);
+
+    private void Conectarse() {
+        con = link.Conectarse();
+        Consulta = "SELECT * FROM TbEmpleados";
+        try {
+            rs = con.createStatement().executeQuery(Consulta);
             rs.first();
-            int numreg =rs.getRow();
-            if(numreg>0)
-            {
+            int numreg = rs.getRow();
+            if (numreg > 0) {
                 PrimeroActionPerformed(null);
             }
-        }
-        catch(SQLException err)
-        {
-            JOptionPane.showMessageDialog(null, err.getMessage(),"Sistema",0);
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage(), "Sistema", 0);
         }
     }
 
@@ -518,6 +514,7 @@ public class Frmempleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

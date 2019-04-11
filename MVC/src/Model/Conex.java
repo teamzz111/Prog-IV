@@ -14,10 +14,10 @@ public class Conex {
     public Connection getConection()
     {
     Connection link = null;
-    String url = "jdbc:mysql://localhost/prog";
+    String url = "jdbc:mysql://5.189.175.156:3306/simanca";
     try{
     Class.forName("com.mysql.jdbc.Driver");
-    link = DriverManager.getConnection(url,"root","");
+    link = DriverManager.getConnection(url,"clases","Clases2018");
     }catch (SQLException err){
        JOptionPane.showMessageDialog(null, err.getMessage(),"Mensaje",0);
        
