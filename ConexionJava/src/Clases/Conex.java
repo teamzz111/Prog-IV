@@ -8,7 +8,7 @@ public class Conex {
     public Connection Conectarse()
     {
         Connection link=null;
-        String url="jdbc:mysql://5.189.175.156/dbclasessimanca";
+        String url="jdbc:mysql://YOUR_DB_HOST:3306/YOUR_DB_NAME";
   
         try
         {
@@ -20,7 +20,7 @@ public class Conex {
         }
         try 
         {
-            link=DriverManager.getConnection(url, "clases", "Clases2018");
+            link=DriverManager.getConnection(url, "YOUR_DB_USER", "YOUR_DB_PASSWORD");
         }
         catch(SQLException err){  
             JOptionPane.showMessageDialog(null, err.getMessage(), "Mensaje",0);
